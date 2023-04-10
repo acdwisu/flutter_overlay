@@ -54,14 +54,14 @@ class LegalOverlay extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                FlatButton(
+                ElevatedButton(
                   onPressed: () {
                     removeOverlay();
                     showLicensePage(context: context);
                   },
                   child: Text("Legal"),
                 ),
-                FlatButton(
+                ElevatedButton(
                   onPressed: () => removeOverlay(),
                   child: Text("Close"),
                 )

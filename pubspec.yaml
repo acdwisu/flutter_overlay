@@ -5,7 +5,7 @@ author: maddyb99 <maddybcorp@outlook.com>
 homepage: https://github.com/maddyb99/flutter_overlay
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.19.5 <3.0.0'
 
 dependencies:
   flutter:

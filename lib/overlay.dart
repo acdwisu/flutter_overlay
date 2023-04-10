@@ -4,19 +4,15 @@ import 'package:flutter/material.dart';
 
 class CustomOverlay {
   final BuildContext context;
-  final Widget overlayWidget;
-  final Function builder;
+  final Widget? overlayWidget;
+  final Function? builder;
 
-  Function removeOverlay;
-  OverlayEntry overlay, overlayBackground;
+  late final Function removeOverlay;
+  late final OverlayEntry overlay, overlayBackground;
 
-  CustomOverlay({@required this.context, this.overlayWidget, this.builder}) {
+  CustomOverlay({required this.context, this.overlayWidget, this.builder}) {
     assert((overlayWidget != null && builder == null) ||
         (overlayWidget == null && builder != null));
-    removeOverlay = () {
-      overlayBackground.remove();
-      overlay.remove();
-    };
     overlayBackground = OverlayEntry(
       builder: (context) => Positioned.fill(
         child: GestureDetector(
@@ -33,18 +29,25 @@ class CustomOverlay {
         ),
       ),
     );
+
     if (overlayWidget != null)
       overlay = OverlayEntry(
         builder: (context) => Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [overlayWidget]),
+            children: [overlayWidget!]),
       );
     else
       overlay = OverlayEntry(
         builder: (context) => Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [builder(removeOverlay)]),
+            children: [builder!(removeOverlay)]),
       );
+
+    removeOverlay = () {
+      overlayBackground.remove();
+      overlay.remove();
+    };
+
     buildOverlay(context);
   }
 
